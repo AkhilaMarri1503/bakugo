@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tech Fest Bootup</title>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(120deg, #ff6a00, #ff9100);
+      animation: pulseBg 6s infinite alternate;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    @keyframes pulseBg {
+      0% { background-color: #ff6a00; }
+      100% { background-color: #ff8f00; }
+    }
+
+    .bootup-text {
+      font-size: 1.4rem;
+      white-space: pre-line;
+      text-align: left;
+      max-width: 400px;
+      opacity: 0;
+      animation: type 6s steps(50, end) forwards;
+      border-right: 2px solid #fff;
+      padding: 20px;
+    }
+
+    @keyframes type {
+      from { opacity: 1; width: 0; }
+      to { opacity: 1; width: 100%; }
+    }
+
+    .enter-btn {
+      margin-top: 40px;
+      padding: 14px 28px;
+      font-size: 1.2rem;
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .enter-btn:hover {
+      background: #fff;
+      color: #ff6a00;
+      box-shadow: 0 0 20px #fff;
+    }
+
+    .floating-icons {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .icon {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatUp linear infinite;
+      opacity: 0.2;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh); }
+      to   { transform: translateY(-10vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bootup-text" id="bootText">
+    > Initializing Interface...
+    > Loading Techie Legacy...
+    > Preparing Event Portal...
+    > Welcome, Innovator!
+  </div>
+
+  <a href="event-portal.html" class="enter-btn">Enter Fest Portal</a>
+
+  <div class="floating-icons" id="floatingIcons"></div>
+
+  <script>
+    const emojis = ["💻", "⚙️", "🎭", "🎤", "🎸", "🎨"];
+    const container = document.getElementById("floatingIcons");
+
+    for (let i = 0; i < 20; i++) {
+      const span = document.createElement("span");
+      span.classList.add("icon");
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.animationDuration = 5 + Math.random() * 5 + "s";
+      span.style.fontSize = 1 + Math.random() * 2 + "rem";
+      container.appendChild(span);
+    }
+  </script>
+
+</body>
+</html>
